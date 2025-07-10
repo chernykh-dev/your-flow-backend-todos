@@ -8,6 +8,12 @@ public class TodosDbContext : DbContext
 {
     public DbSet<TodoItem> TodoItems { get; set; }
 
+    public TodosDbContext(DbContextOptions<TodosDbContext> options)
+    {
+        Database.EnsureDeleted();
+        Database.EnsureCreated();
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder
