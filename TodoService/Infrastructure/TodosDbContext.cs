@@ -11,7 +11,7 @@ public class TodosDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder
-            .UseNpgsql("Host=localhost;Port=5432;Database=todos-db;Username=admin;Password=admin;")
+            .UseNpgsql("Host=todos-db;Port=5432;Database=todos-db;Username=admin;Password=admin;")
             .UseSnakeCaseNamingConvention();
     }
 
