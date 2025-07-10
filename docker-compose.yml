@@ -17,5 +17,7 @@ services:
     ports:
       - "5206:5206"
       - "7007:7007"
+    environment:
+      - ASPNETCORE_URLS=http://+:5206
     depends_on:
       - todos-db
