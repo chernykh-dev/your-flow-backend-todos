@@ -22,7 +22,7 @@ jobs:
         run: dotnet publish -c Release -o out
 
       - name: Copy files to VPS via SSH
-        uses: appleboy/scp-action@v1
+        uses: appleboy/scp-action@master
         with:
           use_insecure_cipher: true
           host: ${{ secrets.VPS_HOST }}
@@ -32,7 +32,7 @@ jobs:
           target: "/home/${{ secrets.VPS_USER }}/todos/"
 
       - name: Restart Docker container on VPS
-        uses: appleboy/ssh-action@v1.0.0
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
