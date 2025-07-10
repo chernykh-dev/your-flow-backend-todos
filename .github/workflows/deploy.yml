@@ -38,6 +38,6 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd ~/todos/out
+            cd /home/${{ secrets.VPS_USER }}/todos/out
             docker-compose down
             docker-compose up -d --build
