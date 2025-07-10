@@ -33,13 +33,4 @@
       <Content Include=".github\workflows\deploy.yml" />
     </ItemGroup>
 
-    <ItemGroup>
-      <None Update="docker-compose.yml">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-      <None Update="Dockerfile">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
-
 </Project>
