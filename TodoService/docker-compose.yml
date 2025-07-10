@@ -11,3 +11,10 @@ services:
       POSTGRES_USER: "admin"
       POSTGRES_PASSWORD: "admin"
 
+  todos-app:
+    build: .
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - todos-db
