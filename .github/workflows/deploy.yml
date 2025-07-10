@@ -18,6 +18,16 @@ jobs:
         with:
           dotnet-version: '9.0.301'
 
+      - name: Check if secrets loaded
+        run: |
+          echo "VPS_HOST: ${VPS_HOST:0:5}..."
+          echo "VPS_USER: ${VPS_USER}"
+          echo "VPS_SSH_KEY length: ${#VPS_SSH_KEY}"
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+
       - name: Build project
         run: dotnet publish -c Release -o out
 
