@@ -32,4 +32,10 @@
       <Content Include=".github\workflows\deploy.yml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="docker-compose.yml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
