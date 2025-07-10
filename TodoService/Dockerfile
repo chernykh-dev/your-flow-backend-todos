@@ -8,7 +8,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 RUN ls
-COPY ["TodoService/TodoService.csproj", "TodoService/"]
+COPY ["TodoService.csproj", "TodoService/"]
 RUN dotnet restore "TodoService/TodoService.csproj"
 COPY . .
 WORKDIR "/src/TodoService"
