@@ -4,25 +4,14 @@ using TodoService.Domain.Entities;
 
 namespace TodoService.Infrastructure;
 
-public class TodosDbContext : DbContext
+public class TodosDbContext(IConfiguration configuration) : DbContext
 {
     public DbSet<TodoItem> TodoItems { get; set; }
-
-    public TodosDbContext(DbContextOptions<TodosDbContext> options)
-    {
-        Database.EnsureDeleted();
-        Database.EnsureCreated();
-    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder
-            .UseNpgsql("Host=todos-db;Port=5432;Database=todos-db;Username=admin;Password=admin;")
+            .UseNpgsql($"Host={configuration["DB_HOST"]};Port=5432;Database=todos-db;Username=admin;Password=admin;")
             .UseSnakeCaseNamingConvention();
-    }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
     }
 }

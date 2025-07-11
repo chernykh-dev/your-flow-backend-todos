@@ -43,9 +43,7 @@ public class TodoItemController(ITodoItemRepository todoItemRepository) : Contro
 
             await todoItemRepository.SaveChangesAsync();
 
-            // return new CreatedResult($"http://localhost:5206/api/v1/todos/{entity.Id}", entity);
-            return new CreatedAtActionResult(nameof(GetAsync), "api/v1/todos",
-                new { id = entity.Id }, entity);
+            return new CreatedResult($"http://localhost:5206/api/v1/todos/{entity.Id}", entity);
         }
         catch (Exception e)
         {

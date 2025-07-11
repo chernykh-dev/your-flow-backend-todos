@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  todos-app:
+    build:
+      context: "C:\\Users\\Artyom Chernykh\\your-flow-backend\\TodoService"
+      dockerfile: "Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Release/net9.0/TodoService.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "todoservice:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\Artyom Chernykh\\your-flow-backend\\TodoService\\TodoService:/app:rw"
+    - "C:\\Users\\Artyom Chernykh\\your-flow-backend\\TodoService:/src:rw"
+    - "C:\\Users\\Artyom Chernykh\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"
