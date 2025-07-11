@@ -1,9 +1,8 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace TodoService.Requests;
 
-public class AddTodoItemRequest : IRequest<ActionResult<Guid>>
+public class AddTodoItemRequest
 {
     public Guid? Id { get; set; }
 

@@ -17,7 +17,6 @@ public class Program
         builder.Services.AddSwaggerGen();
 
         builder.Services.AddMapster();
-        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
         builder.Services.AddDbContext<TodosDbContext>();
 
