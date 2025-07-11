@@ -9,4 +9,6 @@ public class TodoItem
     public string? Description { get; set; }
 
     public double? Order { get; set; }
+
+    public TodoItem? Parent { get; set; }
 }
