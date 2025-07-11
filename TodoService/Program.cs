@@ -1,6 +1,7 @@
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using TodoService.Domain.Repositories;
+using TodoService.Extensions;
 using TodoService.Infrastructure;
 using TodoService.Infrastructure.Repositories;
 
@@ -42,6 +43,8 @@ public class Program
 
         app.UseSwagger();
         app.UseSwaggerUI();
+
+        app.ApplyMigrations();
 
         app.Run();
     }
