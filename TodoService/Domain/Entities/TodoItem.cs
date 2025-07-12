@@ -6,6 +6,8 @@ public class TodoItem
 
     public string Title { get; set; }
 
+    public bool IsCompleted { get; set; }
+
     public string? Description { get; set; }
 
     public double? Order { get; set; }

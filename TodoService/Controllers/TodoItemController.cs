@@ -73,6 +73,10 @@ public class TodoItemController(ITodoItemRepository todoItemRepository) : Contro
             }
 
             entity.Title = model.Title;
+            if (model.IsCompleted != null)
+            {
+                entity.IsCompleted = model.IsCompleted.Value;
+            }
             entity.Description = model.Description;
             entity.Order = model.Order;
             entity.ParentId = model.ParentId;
