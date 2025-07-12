@@ -6,7 +6,7 @@ public class TodoItemModel
 {
     public Guid? Id { get; set; }
 
-    public string? Title { get; set; }
+    public string Title { get; set; }
 
     // TODO: Вынести в отдельный класс по редактированию.
     public bool? IsCompleted { get; set; }

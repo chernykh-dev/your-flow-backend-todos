@@ -73,13 +73,37 @@ public class TodoItemController(ITodoItemRepository todoItemRepository) : Contro
             }
 
             entity.Title = model.Title;
-            if (model.IsCompleted != null)
-            {
-                entity.IsCompleted = model.IsCompleted.Value;
-            }
+            // TODO: Completed changes.
             entity.Description = model.Description;
             entity.Order = model.Order;
             entity.ParentId = model.ParentId;
+
+            todoItemRepository.Update(entity);
+
+            await todoItemRepository.SaveChangesAsync();
+
+            return new OkResult();
+        }
+        catch (Exception e)
+        {
+            return new BadRequestObjectResult(e.Message);
+        }
+    }
+
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> ToggleCompletedAsync([FromRoute] Guid id,
+        [FromBody] ToggleCompletedRequestModel model, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var entity = await todoItemRepository.GetByIdAsync(id);
+
+            if (entity == null)
+            {
+                return new NotFoundResult();
+            }
+
+            entity.IsCompleted = model.IsCompleted;
 
             todoItemRepository.Update(entity);
 
