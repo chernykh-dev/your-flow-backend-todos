@@ -27,6 +27,18 @@ public class Program
         builder.Services.AddRouting();
         builder.Services.AddControllers();
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(name: "allow_all",
+                policy =>
+                {
+                    policy
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin();
+                });
+        });
+
         builder.Services.AddLogging();
 
         var app = builder.Build();
@@ -40,6 +52,8 @@ public class Program
         // app.UseHttpsRedirection();
         app.UseRouting();
         app.MapControllers();
+
+        app.UseCors("allow_all");
 
         app.UseSwagger();
         app.UseSwaggerUI();
