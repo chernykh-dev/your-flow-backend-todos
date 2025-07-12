@@ -4,6 +4,8 @@ namespace TodoService.Domain.Repositories;
 
 public interface ITodoItemRepository
 {
+    Task<List<TodoItem>> GetAllAsync();
+
     Task<TodoItem?> GetByIdAsync(Guid id);
 
     Task AddAsync(TodoItem item);

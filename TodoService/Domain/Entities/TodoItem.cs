@@ -10,5 +10,5 @@ public class TodoItem
 
     public double? Order { get; set; }
 
-    public TodoItem? Parent { get; set; }
+    public Guid? ParentId { get; set; }
 }

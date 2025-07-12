@@ -6,6 +6,12 @@ namespace TodoService.Infrastructure.Repositories;
 
 public class TodoItemRepository(TodosDbContext dbContext) : ITodoItemRepository
 {
+    public async Task<List<TodoItem>> GetAllAsync()
+    {
+        return await dbContext.TodoItems
+            .ToListAsync();
+    }
+
     public async Task<TodoItem?> GetByIdAsync(Guid id)
     {
         var entity = await dbContext.TodoItems
