@@ -89,7 +89,7 @@ public class TodoItemController(ITodoItemRepository todoItemRepository) : Contro
         }
     }
 
-    [HttpDelete("{id:guid")]
+    [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] Guid id, CancellationToken cancellationToken)
     {
         try
