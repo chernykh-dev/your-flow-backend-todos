@@ -90,6 +90,7 @@ public class TodoItemController(ITodoItemRepository todoItemRepository) : Contro
         }
     }
 
+    // TODO: Подумать как правильно toggle/id or id/toggle
     [HttpPut("toggle/{id:guid}")]
     public async Task<IActionResult> ToggleCompletedAsync([FromRoute] Guid id,
         [FromBody] ToggleCompletedRequestModel model, CancellationToken cancellationToken)
