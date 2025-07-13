@@ -18,6 +18,14 @@ public class TodoItemController(ITodoItemRepository todoItemRepository) : Contro
         return new OkObjectResult(entities);
     }
 
+    [HttpGet("sorted")]
+    public async Task<ActionResult<List<TodoItem>>> GetAllSortedAsync(CancellationToken cancellationToken)
+    {
+        var entities = await todoItemRepository.GetAllSortedAsync();
+
+        return new OkObjectResult(entities);
+    }
+
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<TodoItem>> GetAsync([FromRoute] Guid id, CancellationToken cancellationToken)
     {
@@ -90,7 +98,6 @@ public class TodoItemController(ITodoItemRepository todoItemRepository) : Contro
         }
     }
 
-    // TODO: Подумать как правильно toggle/id or id/toggle
     [HttpPut("toggle/{id:guid}")]
     public async Task<IActionResult> ToggleCompletedAsync([FromRoute] Guid id,
         [FromBody] ToggleCompletedRequestModel model, CancellationToken cancellationToken)

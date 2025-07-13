@@ -12,6 +12,14 @@ public class TodoItemRepository(TodosDbContext dbContext) : ITodoItemRepository
             .ToListAsync();
     }
 
+    public async Task<List<TodoItem>> GetAllSortedAsync()
+    {
+        return await dbContext.TodoItems
+            .OrderBy(t => t.IsCompleted)
+            .ThenBy(t => t.Order)
+            .ToListAsync();
+    }
+
     public async Task<TodoItem?> GetByIdAsync(Guid id)
     {
         var entity = await dbContext.TodoItems

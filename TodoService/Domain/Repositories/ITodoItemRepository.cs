@@ -6,6 +6,8 @@ public interface ITodoItemRepository
 {
     Task<List<TodoItem>> GetAllAsync();
 
+    Task<List<TodoItem>> GetAllSortedAsync();
+
     Task<TodoItem?> GetByIdAsync(Guid id);
 
     Task AddAsync(TodoItem item);
