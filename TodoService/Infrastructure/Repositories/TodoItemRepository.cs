@@ -15,7 +15,7 @@ public class TodoItemRepository(TodosDbContext dbContext) : ITodoItemRepository
     public async Task<List<TodoItem>> GetAllSortedAsync()
     {
         return await dbContext.TodoItems
-            .OrderBy(t => t.IsCompleted)
+            .OrderBy(t => !t.IsCompleted)
             .ThenBy(t => t.Order)
             .ToListAsync();
     }
