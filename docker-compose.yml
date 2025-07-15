@@ -21,6 +21,8 @@ services:
     restart: always
     ports:
       - "5432:5432"
+    volumes:
+      - /pgdata:/var/lib/postgresql/data/pgdata
     environment:
       POSTGRES_DB: "todos-db"
       POSTGRES_USER: "admin"
