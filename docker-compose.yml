@@ -48,11 +48,6 @@ services:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
 
-      KC_HOSTNAME: localhost
-      KC_HOSTNAME_PORT: 8080
-      KC_HOSTNAME_STRICT: false
-      KC_HOSTNAME_STRICT_HTTPS: false
-
       KC_DB: postgres
       KC_DB_URL_HOST: todos-db
       KC_DB_URL_DATABASE: todos-db
@@ -60,4 +55,4 @@ services:
       KC_DB_PASSWORD: postgres
     depends_on:
       - todos-db
-    command: start-dev
+    command: start-dev --http-enabled=true
