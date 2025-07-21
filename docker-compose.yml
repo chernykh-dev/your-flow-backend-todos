@@ -24,7 +24,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - /pgdata:/var/lib/postgresql/data/todos-db-data
+      - ./pg-data:/var/lib/postgresql/data/todos-db-data
     environment:
       POSTGRES_DB: "todos-db"
       POSTGRES_USER: "postgres"
@@ -51,4 +51,4 @@ services:
       - todos-db
     command: start-dev
     volumes:
-      - ./keycloakdata:/opt/keycloak/data
+      - ./keycloak-data:/opt/keycloak/data
