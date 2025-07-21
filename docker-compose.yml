@@ -60,7 +60,7 @@ services:
       - todos-db
     command: "start-dev"
 
-  nginx:
+  todos-nginx:
     image: nginx:latest
     container_name: todos-nginx
     restart: always
