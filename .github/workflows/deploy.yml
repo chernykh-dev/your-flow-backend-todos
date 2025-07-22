@@ -45,7 +45,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          source: "."
+          source: "docker-compose.template.yml"
           target: "/home/${{ secrets.VPS_USER }}/todos/"
 
       - name: Replace image name & restart container
@@ -55,7 +55,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /home/${{ secrets.VPS_USER }}/todos/TodoService
+            cd /home/${{ secrets.VPS_USER }}/todos
             
             sed "s|__TODOS_APP_IMAGE_NAME__|${{ env.IMAGE_NAME }}|" docker-compose.template.yml > docker-compose.yml
             
