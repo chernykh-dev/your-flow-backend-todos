@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  IMAGE_NAME: ghcr.io/${{ GITHUB_REPOSITORY }}:${{ GITHUB_HEAD_REF || GITHUB_REF_NAME }}
+  IMAGE_NAME: ghcr.io/${{ github.repository }}:${{ github.head_ref || github.ref_name }}
 
 jobs:
   build-and-deploy:
