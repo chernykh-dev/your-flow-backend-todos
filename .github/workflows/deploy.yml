@@ -59,6 +59,8 @@ jobs:
             
             sed "s|__TODOS_APP_IMAGE_NAME__|${{ env.IMAGE_NAME }}|" docker-compose.template.yml > docker-compose.yml
             
+            rm -rf docker-compose.template.yml
+            
             docker login -u ${{ secrets.GHCR_USERNAME }} -p ${{ secrets.GHCR_TOKEN }} ghcr.io
             docker pull ${{ env.IMAGE_NAME }}
             docker-compose down
