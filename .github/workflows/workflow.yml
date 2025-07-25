@@ -35,6 +35,10 @@ jobs:
         run: |
           kubectl get namespace $KUBE_NAMESPACE || kubectl create namespace $KUBE_NAMESPACE
 
+      - name: Deploy PostgreSQL
+        run: |
+          helm upgrade --install postgres bitnami/postgresql --namespace master --create-namespace -f helm/todos-service/postgres/values.yaml
+
       - name: Deploy todos helm chart
         run: |
           helm upgrade --install todos-service ./helm/todos-service \
