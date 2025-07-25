@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todos-service
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: todos-service
+  template:
+    metadata:
+      labels:
+        app: todos-service
+    spec:
+      containers:
+        - name: todos-service
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: DATABASE_NAME
+              value: "{{ .Values.database.name }}"
+          ports:
+            - containerPort: 80

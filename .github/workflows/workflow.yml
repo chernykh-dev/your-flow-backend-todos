@@ -1,0 +1,44 @@
+name: Deploy to Kubernetes
+
+on:
+  push:
+    branches:
+      - master
+      - 'yf-*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      KUBE_NAMESPACE: ${{ github.ref == 'refs/heads/master' && 'master' || github.ref_name }}
+      IMAGE_TAG: ${{ github.ref_name }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Kustomize (если используешь) / Helm
+        uses: azure/setup-helm@v3
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Configure kubeconfig
+        run: |
+          echo "${{ secrets.KUBECONFIG_DATA }}" | base64 -d > $HOME/.kube/config
+
+      - name: Create namespace if not exists
+        run: |
+          kubectl get namespace $KUBE_NAMESPACE || kubectl create namespace $KUBE_NAMESPACE
+
+      - name: Deploy todos helm chart
+        run: |
+          helm upgrade --install todos-service ./helm/todo-service \
+            --namespace $KUBE_NAMESPACE \
+            --set image.tag=$IMAGE_TAG \
+            --set namespace=$KUBE_NAMESPACE
+
+
