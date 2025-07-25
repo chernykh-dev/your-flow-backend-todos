@@ -13,10 +13,13 @@ spec:
       labels:
         app: todos-service
     spec:
+      imagePullSecrets:
+        {{- toYaml .Values.imagePullSecrets | nindent 8 }}
       containers:
         - name: todos-service
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePu
           env:
             - name: DATABASE_NAME
               value: "{{ .Values.database.name }}"
