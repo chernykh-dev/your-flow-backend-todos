@@ -35,16 +35,9 @@ jobs:
         run: |
           kubectl get namespace $KUBE_NAMESPACE || kubectl create namespace $KUBE_NAMESPACE
 
-      - name: Show current directory and files
-        run: |
-          pwd
-          ls -la
-          ls -la helm/
-          ls -la helm/todo-service/
-
       - name: Deploy todos helm chart
         run: |
-          helm upgrade --install todos-service ./helm/todo-service \
+          helm upgrade --install todos-service ./helm/todos-service \
             --namespace $KUBE_NAMESPACE \
             --set image.tag=$IMAGE_TAG \
             --set namespace=$KUBE_NAMESPACE
